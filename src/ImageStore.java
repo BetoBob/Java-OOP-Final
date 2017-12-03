@@ -199,7 +199,7 @@ final class ImageStore
       return false;
    }
 
-   private boolean parseBackground(String [] properties, WorldModel world)
+   public boolean parseBackground(String [] properties, WorldModel world)
    {
       if (properties.length == BGND_NUM_PROPERTIES)
       {

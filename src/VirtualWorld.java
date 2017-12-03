@@ -76,8 +76,14 @@ public final class VirtualWorld
       {
          this.scheduler.updateOnTime(time);
          next_time = time + TIMER_ACTION_PERIOD;
+         if (mousePressed) {
+            Point click = view.getViewport().viewportToWorld(mouseX/32, mouseY/32);
+            //loadWorld(world, "background.sav", imageStore);
+            world.setBackground(click, new Background("rocks", imageStore.getImageList("rocks")));
+            System.out.println(click.x);
+            System.out.println(click.y);
+         }
       }
-
       view.drawViewport();
    }
 
