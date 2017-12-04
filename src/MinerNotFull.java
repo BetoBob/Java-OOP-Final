@@ -19,8 +19,8 @@ final class MinerNotFull extends Miner  {
     {
         Optional<Entity> doVeinExist = position.findNearest(world, new VeinVisitor());
         if (!doVeinExist.isPresent()) {
-            Optional<Entity> home = position.findNearest(world, new BlackSmithVisitor());
-            goHome(world, home.get(), scheduler);
+            goHome(world,
+                    position.findNearest(world, new BlackSmithVisitor()).get(), scheduler);
         }
 
         Optional<Entity> notFullTarget = position.findNearest(world, new OreVisitor());
