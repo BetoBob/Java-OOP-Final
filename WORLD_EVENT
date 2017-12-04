@@ -1,0 +1,46 @@
+/// Spooky Happenings in Miner Town! ///
+- Robert Hensley (CPE 203)
+
+I. Event Triggered
+
+    A supernatural force is spawning 3x3 graveyards from the ground! With
+    a left click of a button, the background of the clicked tile and it's adjacent
+    manhattan/diagonal neighbors are turned into the following background images
+        1. Dirt (70%)
+        2. Graves (20%)
+        3. Pumpkins (8.5%)
+        4. Spooky Trees (2.5%; RARE!)
+
+II. Effects of the Events
+
+    Horrifyingly, the miners of the town are being turned into zombies!
+    Upon a click, all Miners (full and not full) in the targeted area
+    and it's manhattan/diagonal neighbors turn into a MinerZombie!
+    - ActionPeriods and Animation Periods will be inhereted from
+      the original non-infected miner
+
+III. Zombie Actions
+
+    The zombies will infect other Miners (full and not full) that they target! Yikes!
+    (ActionPeriod/Animation Periods will also be inhereted from non-infected miner)
+
+    Fortunately OreBlobs will destroy the infected Miners with their quake voodoo magic.
+    (They felt bad about destroying the precious Vein the Miners harvested Ore from)
+    - OreBlobs will destroy whichever entity is closest to them (Veins or MinerZombies)
+
+    Additionally, when no Vein is present on the map, Miners will head home
+    (to the BlackSmiths) because it's too spooky outside!
+
+IV. Another Evil Entity
+
+    If you thought a zombie outbreak wasn't bad enough, there's an even worse entity
+    lurking in the graveyard... the notorious PumpkinMan. Although the PumpkinMan is
+    slow, he targets any moving entity and obliterates them with his quake magic!
+    Beware of large clumps of entities; that is where he is known to strike!
+
+    - Action Period: 800
+    - Targets include:
+        1. OreBlobs
+        2. Miners (Full/NotFull)
+        3. Zombies
+

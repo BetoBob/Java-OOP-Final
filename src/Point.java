@@ -87,9 +87,4 @@ final class Point
       return deltaX * deltaX + deltaY * deltaY;
    }
 
-   // s refers to source
-   public Node toNode() {
-       return new Node(this);
-   }
-
 }

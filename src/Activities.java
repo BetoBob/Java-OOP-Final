@@ -10,7 +10,7 @@ abstract class Activities extends WorldEntity{
                 List<PImage> images,
                 int actionPeriod)
     {
-        super(id,position, images);
+        super(id, position, images);
         this.actionPeriod = actionPeriod;
     }
 
