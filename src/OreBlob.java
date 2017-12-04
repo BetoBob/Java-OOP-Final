@@ -26,23 +26,12 @@ final class OreBlob extends Move {
 
             if (moveTo(world, blobTarget.get(), scheduler))
             {
-                if(blobTarget.get().getClass() == MinerZombie.class) {
-                    MinerNotFull minerNotFull = new MinerNotFull(MINER_NOT_FULL_ID, tgtPos,
-                            imageStore.getImageList(MINER_NOT_FULL_ID), 5,0,
-                            ((MinerZombie)blobTarget.get()).getActionPeriod(),
-                            ((MinerZombie)blobTarget.get()).getAnimationPeriod());
-                    world.addEntity(minerNotFull);
-                    nextPeriod += actionPeriod;
-                    minerNotFull.scheduleActions(scheduler, world, imageStore);
-                }
-                else {
-                    Quake quake = new Quake(QUAKE_ID, tgtPos,
-                            imageStore.getImageList(QUAKE_KEY),
-                            QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
-                    world.addEntity(quake);
-                    nextPeriod += actionPeriod;
-                    quake.scheduleActions(scheduler, world, imageStore);
-                }
+                Quake quake = new Quake(QUAKE_ID, tgtPos,
+                        imageStore.getImageList(QUAKE_KEY),
+                        QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
+                world.addEntity(quake);
+                nextPeriod += actionPeriod;
+                quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 
