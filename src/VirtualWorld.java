@@ -116,10 +116,11 @@ public final class VirtualWorld
 
       if (zombieTarget.isPresent() && zombieTarget.get().accept(miner_check)) {
 
+         Point tgtPos = zombieTarget.get().getPosition();
          scheduler.unscheduleAllEvents(zombieTarget.get());
          world.removeEntity(zombieTarget.get());
-         Point tgtPos = zombieTarget.get().getPosition();
 
+         System.out.println("New zombie?");
          MinerZombie minerZombie = new MinerZombie(ZOMBIE_ID, tgtPos,
                  imageStore.getImageList(ZOMBIE_ID), 0,
                  ((Miner)zombieTarget.get()).getActionPeriod(),
