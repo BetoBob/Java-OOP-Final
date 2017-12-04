@@ -4,7 +4,8 @@ public class AllFalseEntityVisitor implements EntityVisitor<Boolean>
     public Boolean visit(MinerFull minerFull){
         return false;
     }
-    public Boolean visit(MinerNotFull minerNotFull){ return false; }
+    public Boolean visit(MinerNotFull minerNotFull) { return false; }
+    public Boolean visit(MinerZombie minerZombie) {return false;}
     public Boolean visit(Obstacle obstacle){
         return false;
     }

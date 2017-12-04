@@ -17,4 +17,8 @@ abstract class Miner extends Move {
 
     public abstract void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler);
 
+    public int getAnimationPeriod() { return animationPeriod; }
+
+    public int getActionPeriod() { return actionPeriod; }
+
 }

@@ -12,6 +12,7 @@ blob images/blob10.bmp 255 255 255 0
 blob images/blob11.bmp 255 255 255 0
 blob images/blob12.bmp 255 255 255 0
 grass images/grass.bmp
+grave images/grave.bmp
 miner images/miner1.bmp 252 252 252 0
 miner images/miner2.bmp 252 252 252 0
 miner images/miner3.bmp 252 252 252 0
@@ -19,6 +20,7 @@ miner images/miner4.bmp 252 252 252 0
 miner images/miner5.bmp 252 252 252 0
 obstacle images/obstacle.bmp
 ore images/ore.bmp 201 26 26 0
+tree images/tree.bmp
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0
 quake images/quake3.bmp 255 255 255 0
@@ -27,4 +29,20 @@ quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
 rocks images/rock.bmp
 vein images/vein.bmp
+zombie images/zombie1.bmp 255 255 255 0
+zombie images/zombie2.bmp 255 255 255 0
+zombie images/zombie3.bmp 255 255 255 0
+zombie images/zombie4.bmp 255 255 255 0
+zombie images/zombie5.bmp 255 255 255 0
+zombie images/zombie6.bmp 255 255 255 0
+zombie images/zombie7.bmp 255 255 255 0
+zombie images/zombie8.bmp 255 255 255 0
+zombie images/zombie9.bmp 255 255 255 0
+zombie images/zombie10.bmp 255 255 255 0
+zombie images/zombie11.bmp 255 255 255 0
+zombie images/zombie12.bmp 255 255 255 0
+zombie images/zombie13.bmp 255 255 255 0
+zombie images/zombie14.bmp 255 255 255 0
+zombie images/zombie15.bmp 255 255 255 0
+zombie images/zombie16.bmp 255 255 255 0
 background_default images/none.bmp

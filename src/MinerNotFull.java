@@ -39,20 +39,14 @@ final class MinerNotFull extends Miner  {
         }
 
         else {
-            AStarPathingStrategy ASPS = new AStarPathingStrategy();
-            //SingleStepPathingStrategy ASPS = new SingleStepPathingStrategy();
-
-            List<Point> pointList = ASPS.computePath(position, target.getPosition(),
+            SingleStepPathingStrategy SSPS = new SingleStepPathingStrategy();
+            List<Point> pointList = SSPS.computePath(position, target.getPosition(),
                     p -> world.withinBounds(p) && !(world.isOccupied(p)),
                     (p1, p2) -> neighbors(p1, p2), PathingStrategy.CARDINAL_NEIGHBORS);
 
-            //System.out.print("pointlist: ");
-            //System.out.println(pointList);
+            if (pointList.size() > 0) {
 
-            if (pointList.size() > 1) {
-
-                Point nextPos = pointList.get(1);
-                //System.out.println(nextPos);
+                Point nextPos = pointList.get(0);
 
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {

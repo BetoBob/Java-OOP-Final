@@ -17,8 +17,6 @@ public class Quake extends Animated  {
             super(id, position, images, actionPeriod, animationPeriod);
         }
 
-    //Getter Methods
-
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
         scheduler.unscheduleAllEvents(this);

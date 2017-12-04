@@ -50,15 +50,15 @@ final class OreBlob extends Move {
         else
         {
 
-            AStarPathingStrategy ASPS = new AStarPathingStrategy();
+            SingleStepPathingStrategy SSPS = new SingleStepPathingStrategy();
 
-            List<Point> pointList = ASPS.computePath(position, target.getPosition(),
+            List<Point> pointList = SSPS.computePath(position, target.getPosition(),
                     p -> world.withinBounds(p) && !(world.isOccupied(p)),
                     (p1, p2) -> neighbors(p1, p2), PathingStrategy.CARDINAL_NEIGHBORS);
 
-            if (pointList.size() > 1) {
+            if (pointList.size() > 0) {
 
-                Point nextPos = pointList.get(1);
+                Point nextPos = pointList.get(0);
 
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent())

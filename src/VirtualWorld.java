@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
 import processing.core.*;
 
 public final class VirtualWorld
@@ -35,6 +37,8 @@ public final class VirtualWorld
    public static final double FASTEST_SCALE = 0.10;
 
    public static double timeScale = 1.0;
+
+   private String ZOMBIE_ID = "zombie";
 
    public ImageStore imageStore;
    public WorldModel world;
@@ -76,15 +80,54 @@ public final class VirtualWorld
       {
          this.scheduler.updateOnTime(time);
          next_time = time + TIMER_ACTION_PERIOD;
-         if (mousePressed) {
-            Point click = view.getViewport().viewportToWorld(mouseX/32, mouseY/32);
-            //loadWorld(world, "background.sav", imageStore);
-            world.setBackground(click, new Background("rocks", imageStore.getImageList("rocks")));
-            System.out.println(click.x);
-            System.out.println(click.y);
-         }
+         if (mousePressed) { click(); }
       }
       view.drawViewport();
+   }
+
+   private void click() {
+      Point click = view.getViewport().viewportToWorld(mouseX/32, mouseY/32);
+
+      List<Point> neighbors = new ArrayList<>(Arrays.asList(
+              new Point(click.x, click.y),
+              new Point(click.x, click.y - 1),
+              new Point(click.x, click.y + 1),
+              new Point(click.x - 1, click.y),
+              new Point(click.x + 1, click.y),
+              new Point(click.x + 1, click.y + 1),
+              new Point(click.x + 1, click.y - 1),
+              new Point(click.x - 1, click.y + 1),
+              new Point(click.x - 1, click.y - 1)
+      ));
+
+      neighbors.stream()
+              .forEach(neigh -> { world.setBackground(neigh,
+                      new Background("grave", imageStore.getImageList("grave")));
+              transform(neigh); });
+      //world.setBackground(click, new Background("tree", imageStore.getImageList("tree")));
+      System.out.println(click.x);
+      System.out.println(click.y);
+   }
+
+   public void transform(Point neigh) {
+
+      Optional<Entity> zombieTarget = world.getOccupant(neigh);
+      EntityVisitor<Boolean> miner_check = new MinerVisitor();
+
+      if (zombieTarget.isPresent() && zombieTarget.get().accept(miner_check)) {
+
+         scheduler.unscheduleAllEvents(zombieTarget.get());
+         world.removeEntity(zombieTarget.get());
+         Point tgtPos = zombieTarget.get().getPosition();
+
+         MinerZombie minerZombie = new MinerZombie(ZOMBIE_ID, tgtPos,
+                 imageStore.getImageList(ZOMBIE_ID), 0,
+                 ((Miner)zombieTarget.get()).getActionPeriod(),
+                 ((Miner)zombieTarget.get()).getAnimationPeriod());
+
+         world.addEntity(minerZombie);
+         minerZombie.scheduleActions(scheduler, world, imageStore);
+      }
    }
 
    public void keyPressed()
