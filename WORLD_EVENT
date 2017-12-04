@@ -18,6 +18,8 @@ II. Effects of the Events
     and it's manhattan/diagonal neighbors turn into a MinerZombie!
     - ActionPeriods and Animation Periods will be inhereted from
       the original non-infected miner
+        - The original ActionPeriod of the Miner is multiplied by 3,
+          making the zombies slower than the regular miners
 
 III. Zombie Actions
 
