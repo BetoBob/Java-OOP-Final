@@ -64,7 +64,6 @@ public class AStarPathingStrategy implements PathingStrategy
                     System.out.println(neigh.getgScore());
                     */
                     if (cur.getgScore() + 1 < neigh.getgScore()) {
-                        System.out.println("made it here");
                         neigh.setgScore(cur.getgScore() + 1);
                         neigh.setfScore(neigh.getgScore() + hScore(neigh.getPoint(), goal));
 

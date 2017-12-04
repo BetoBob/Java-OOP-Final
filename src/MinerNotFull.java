@@ -17,6 +17,12 @@ final class MinerNotFull extends Miner  {
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
+        Optional<Entity> doVeinExist = position.findNearest(world, new VeinVisitor());
+        if (!doVeinExist.isPresent()) {
+            Optional<Entity> home = position.findNearest(world, new BlackSmithVisitor());
+            goHome(world, home.get(), scheduler);
+        }
+
         Optional<Entity> notFullTarget = position.findNearest(world, new OreVisitor());
 
         if (!notFullTarget.isPresent() ||
@@ -24,6 +30,33 @@ final class MinerNotFull extends Miner  {
                 !transform(world, scheduler, imageStore))
         {
             scheduler.scheduleEvent(this, new Activity(this, world, imageStore), actionPeriod);
+        }
+    }
+
+    public void goHome(WorldModel world, Entity target, EventScheduler scheduler) {
+        if (position.adjacent(target.getPosition()))
+        {
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+        }
+
+        else {
+            SingleStepPathingStrategy SSPS = new SingleStepPathingStrategy();
+            List<Point> pointList = SSPS.computePath(position, target.getPosition(),
+                    p -> world.withinBounds(p) && !(world.isOccupied(p)),
+                    (p1, p2) -> neighbors(p1, p2), PathingStrategy.CARDINAL_NEIGHBORS);
+
+            if (pointList.size() > 0) {
+
+                Point nextPos = pointList.get(0);
+
+                Optional<Entity> occupant = world.getOccupant(nextPos);
+                if (occupant.isPresent()) {
+                    scheduler.unscheduleAllEvents(occupant.get());
+                }
+
+                world.moveEntity(this, nextPos);
+            }
         }
     }
 
