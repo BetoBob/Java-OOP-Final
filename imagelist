@@ -22,6 +22,14 @@ miner images/miner5.bmp 252 252 252 0
 obstacle images/obstacle.bmp
 ore images/ore.bmp 201 26 26 0
 pumpkin images/pumpkin.bmp
+pumpkinMan images/pumpkinMan1.bmp
+pumpkinMan images/pumpkinMan2.bmp
+pumpkinMan images/pumpkinMan3.bmp
+pumpkinMan images/pumpkinMan4.bmp
+pumpkinMan images/pumpkinMan5.bmp
+pumpkinMan images/pumpkinMan6.bmp
+pumpkinMan images/pumpkinMan7.bmp
+pumpkinMan images/pumpkinMan8.bmp
 tree images/tree.bmp
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0

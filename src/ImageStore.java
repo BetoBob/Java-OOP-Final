@@ -33,6 +33,14 @@ final class ImageStore
    public static final int MINER_ACTION_PERIOD = 5;
    public static final int MINER_ANIMATION_PERIOD = 6;
 
+   public static final String PUMPKIN_MAN_KEY = "pumpkinMan";
+   public static final int PUMPKIN_MAN_PROPERTIES = 6;
+   public static final int PUMPKIN_MAN_ID = 1;
+   public static final int PUMPKIN_MAN_COL = 2;
+   public static final int PUMPKIN_MAN_ROW = 3;
+   public static final int PUMPKIN_MAN_ACTION_PERIOD = 4;
+   public static final int PUMPKIN_MAN_ANIMATION_PERIOD = 5;
+
    public static final String OBSTACLE_KEY = "obstacle";
    public static final int OBSTACLE_NUM_PROPERTIES = 4;
    public static final int OBSTACLE_ID = 1;
@@ -193,6 +201,8 @@ final class ImageStore
                return parseSmith(properties, world);
             case VEIN_KEY:
                return parseVein(properties, world);
+            case PUMPKIN_MAN_KEY:
+               return parsePumpkinMan(properties, world);
          }
       }
 
@@ -229,6 +239,23 @@ final class ImageStore
       }
 
       return properties.length == MINER_NUM_PROPERTIES;
+   }
+
+   private boolean parsePumpkinMan(String [] properties, WorldModel world)
+   {
+      if (properties.length == PUMPKIN_MAN_PROPERTIES)
+      {
+         Point pt = new Point(Integer.parseInt(properties[PUMPKIN_MAN_COL]),
+                 Integer.parseInt(properties[PUMPKIN_MAN_ROW]));
+         PumpkinMan entity = new PumpkinMan(properties[PUMPKIN_MAN_ID],
+                 pt,
+                 getImageList(PUMPKIN_MAN_KEY),
+                 Integer.parseInt(properties[PUMPKIN_MAN_ACTION_PERIOD]),
+                 Integer.parseInt(properties[PUMPKIN_MAN_ANIMATION_PERIOD]));
+         world.tryAddEntity(entity);
+      }
+
+      return properties.length == PUMPKIN_MAN_PROPERTIES;
    }
 
    private boolean parseObstacle(String [] properties, WorldModel world)

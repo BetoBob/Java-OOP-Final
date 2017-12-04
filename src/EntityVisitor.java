@@ -5,6 +5,7 @@ public interface EntityVisitor<R> {
     R visit(Obstacle obstacle);
     R visit(Ore ore);
     R visit(OreBlob oreBlob);
+    R visit(PumpkinMan pumpkinMan);
     R visit(Quake quake);
     R visit(Vein vein);
     R visit(Entity entity);

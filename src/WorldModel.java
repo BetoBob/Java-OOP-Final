@@ -102,7 +102,6 @@ final class WorldModel
          // defining our own exceptions yet
          throw new IllegalArgumentException("position occupied");
       }
-
       addEntity(entity);
    }
 

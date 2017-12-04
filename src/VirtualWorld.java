@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 import processing.core.*;
 
@@ -87,6 +85,8 @@ public final class VirtualWorld
 
    private void click() {
       Point click = view.getViewport().viewportToWorld(mouseX/32, mouseY/32);
+      System.out.println(click.x);
+      System.out.println(click.y);
 
       List<Point> neighbors = new ArrayList<>(Arrays.asList(
               new Point(click.x, click.y),
@@ -208,8 +208,10 @@ public final class VirtualWorld
    public static void scheduleActions(WorldModel world,
       EventScheduler scheduler, ImageStore imageStore) {
       ActivitiesVisitor activitiesVisitor = new ActivitiesVisitor();
+      //System.out.println(world.entities);
       for (Entity entity : world.entities) {
          if(entity.accept(activitiesVisitor)) {
+            System.out.println(entity);
             ((Activities) entity).scheduleActions(scheduler, world, imageStore);
          }
       }
