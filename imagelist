@@ -11,6 +11,7 @@ blob images/blob9.bmp 255 255 255 0
 blob images/blob10.bmp 255 255 255 0
 blob images/blob11.bmp 255 255 255 0
 blob images/blob12.bmp 255 255 255 0
+dirt images/dirt.bmp
 grass images/grass.bmp
 grave images/grave.bmp
 miner images/miner1.bmp 252 252 252 0
@@ -20,6 +21,7 @@ miner images/miner4.bmp 252 252 252 0
 miner images/miner5.bmp 252 252 252 0
 obstacle images/obstacle.bmp
 ore images/ore.bmp 201 26 26 0
+pumpkin images/pumpkin.bmp
 tree images/tree.bmp
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0

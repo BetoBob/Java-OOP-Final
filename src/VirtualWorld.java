@@ -101,12 +101,15 @@ public final class VirtualWorld
       ));
 
       neighbors.stream()
-              .forEach(neigh -> { world.setBackground(neigh,
-                      new Background("grave", imageStore.getImageList("grave")));
+              .forEach(neigh -> {
+                 float rand = random(0, 10); String id;
+                 if (rand < 0.25) { id = "tree"; }
+                 else if (rand < 1.0) { id = "pumpkin"; }
+                 else if (rand < 3.0) { id = "grave"; }
+                 else { id = "dirt"; }
+                 world.setBackground(neigh,
+                      new Background(id, imageStore.getImageList(id)));
               transform(neigh); });
-      //world.setBackground(click, new Background("tree", imageStore.getImageList("tree")));
-      System.out.println(click.x);
-      System.out.println(click.y);
    }
 
    public void transform(Point neigh) {
@@ -120,7 +123,6 @@ public final class VirtualWorld
          scheduler.unscheduleAllEvents(zombieTarget.get());
          world.removeEntity(zombieTarget.get());
 
-         System.out.println("New zombie?");
          MinerZombie minerZombie = new MinerZombie(ZOMBIE_ID, tgtPos,
                  imageStore.getImageList(ZOMBIE_ID), 0,
                  ((Miner)zombieTarget.get()).getActionPeriod(),
