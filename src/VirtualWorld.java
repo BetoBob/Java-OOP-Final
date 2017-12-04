@@ -208,7 +208,6 @@ public final class VirtualWorld
    public static void scheduleActions(WorldModel world,
       EventScheduler scheduler, ImageStore imageStore) {
       ActivitiesVisitor activitiesVisitor = new ActivitiesVisitor();
-      //System.out.println(world.entities);
       for (Entity entity : world.entities) {
          if(entity.accept(activitiesVisitor)) {
             System.out.println(entity);

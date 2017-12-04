@@ -5,6 +5,8 @@ import java.util.Optional;
 
 final class OreBlob extends Move {
 
+    public static final String MINER_NOT_FULL_ID = "miner";
+
     public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
@@ -15,7 +17,7 @@ final class OreBlob extends Move {
     }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> blobTarget = position.findNearest(world, new VeinVisitor());
+        Optional<Entity> blobTarget = position.findNearest(world, new OreBlobVisitor());
         long nextPeriod = actionPeriod;
 
         if (blobTarget.isPresent())
@@ -24,13 +26,23 @@ final class OreBlob extends Move {
 
             if (moveTo(world, blobTarget.get(), scheduler))
             {
-                Quake quake = new Quake(QUAKE_ID, tgtPos,
-                        imageStore.getImageList(QUAKE_KEY),
-                        QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
-
-                world.addEntity(quake);
-                nextPeriod += actionPeriod;
-                quake.scheduleActions(scheduler, world, imageStore);
+                if(blobTarget.get().getClass() == MinerZombie.class) {
+                    MinerNotFull minerNotFull = new MinerNotFull(MINER_NOT_FULL_ID, tgtPos,
+                            imageStore.getImageList(MINER_NOT_FULL_ID), 5,0,
+                            ((MinerZombie)blobTarget.get()).getActionPeriod(),
+                            ((MinerZombie)blobTarget.get()).getAnimationPeriod());
+                    world.addEntity(minerNotFull);
+                    nextPeriod += actionPeriod;
+                    minerNotFull.scheduleActions(scheduler, world, imageStore);
+                }
+                else {
+                    Quake quake = new Quake(QUAKE_ID, tgtPos,
+                            imageStore.getImageList(QUAKE_KEY),
+                            QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
+                    world.addEntity(quake);
+                    nextPeriod += actionPeriod;
+                    quake.scheduleActions(scheduler, world, imageStore);
+                }
             }
         }
 

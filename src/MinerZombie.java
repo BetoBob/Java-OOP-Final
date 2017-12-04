@@ -11,7 +11,7 @@ public class MinerZombie extends Miner {
                      List<PImage> images, int resourceLimit,
                      int actionPeriod, int animationPeriod)
     {
-        super(id, position, images, resourceLimit, actionPeriod, animationPeriod);
+        super(id, position, images, resourceLimit, actionPeriod*3, animationPeriod);
     }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
@@ -25,7 +25,6 @@ public class MinerZombie extends Miner {
 
             if (moveTo(world, zombieTarget.get(), scheduler))
             {
-                System.out.println("I made it!");
 
                 MinerZombie minerZombie = new MinerZombie(ZOMBIE_ID, tgtPos,
                         imageStore.getImageList(ZOMBIE_ID), 0,

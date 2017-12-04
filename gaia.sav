@@ -40,7 +40,7 @@ obstacle obstacle_13_22 13 22
 obstacle obstacle_14_23 14 23
 obstacle obstacle_14_24 14 24
 obstacle obstacle_11_21 11 21
-pumpkinMan pumpkinMan_0_0 0 0 10000 100
+pumpkinMan pumpkinMan_20_13 20 13 8000 100
 miner miner_12_23 12 23 2 954 100
 vein vein_14_22 14 22 8248
 vein vein_10_25 10 25 8366
