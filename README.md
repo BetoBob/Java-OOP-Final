@@ -18,6 +18,6 @@ In addition to organizing the code, I added new objects and characters to the wo
 * The graph documenting all the objects and their methods are stored in `Methods.graphml` and can be viewed using the **yEd Graph Editor**
 * The original code and graph are included in the `/original` directory, to see the source code before refactoring
 
-![methods](./methods.png)
+![methods](./methods1.png)
 
 **Note:** This if for demonstration purposes only. Do not plagiarize this source code.
